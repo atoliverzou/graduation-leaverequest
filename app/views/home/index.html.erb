@@ -1,0 +1,52 @@
+
+<h1>Welcome, <%= current_user.username %>!</h1>
+
+<% if current_user.position == "经理" %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" style="position: fixed; top: 30%; left: 10%;">
+      <!-- 左侧按钮面板 -->
+      <div class="btn-group-vertical" role="group">
+	 <button class="btn btn-primary" id="pending-me">待我审批</button> 
+	 <button class="btn btn-primary" id="my-leave-btn">我的假期申请</button>
+         <button class="btn btn-primary" id="my-annual-leave-btn">我的年假</button> 
+         <button class="btn btn-primary" >
+            <%= link_to "新建请假", new_leafe_path, :class=>"btn btn-primary create-leave" %>
+        </button>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div class="col-md-9 offset-md-3" style="position: fixed; top: 30%; left: 33%;">
+      <!-- 右侧显示区域 -->
+      <div id="content-area">
+        <!-- 初始显示内容，你可以在 JavaScript 中动态替换这里的内容 -->
+        <p>点击左边按钮以显示内容。</p>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" style="position: fixed; top: 30%; left: 10%;">
+      <!-- 左侧按钮面板 -->
+      <div class="btn-group-vertical" role="group">
+	<button class="btn btn-primary" id="my-leave-btn">我的假期申请</button>
+	<button class="btn btn-primary" >
+		<%= link_to "新建请假", new_leafe_path, :class=>"btn btn-primary create-leave" %>
+        </button>
+        <button class="btn btn-primary" id="my-annual-leave-btn">我的年假</button>
+      </div>
+    </div>
+    <div class="col-md-9 offset-md-3" style="position: fixed; top: 30%; left: 33%;">
+      <!-- 右侧显示区域 -->
+      <div id="content-area">
+        <!-- 初始显示内容，你可以在 JavaScript 中动态替换这里的内容 -->
+        <p>点击左边按钮以显示内容。</p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>
+

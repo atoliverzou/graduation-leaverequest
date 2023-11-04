@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Your Application</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <header>
+    <nav>
+      <%= link_to 'About', '/about' %>
+      <%= link_to 'Contact','/contact' %>
+    </nav>
+  </header>
+  <main>
+    <%= yield %>
+  </main>
+
+  <footer>
+    <p>© <%= Time.current.year %> Your Application. All rights reserved.</p>
+  </footer>
+</body>
+</html>

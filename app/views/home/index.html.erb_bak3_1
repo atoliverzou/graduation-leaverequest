@@ -1,0 +1,73 @@
+
+<h1>Welcome, <%= current_user.username %>!</h1>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" style="position: fixed; top: 30%; left: 10%;">
+      <!-- 左侧按钮面板 -->
+      <div class="btn-group-vertical" role="group">
+	<button class="btn btn-primary" id="my-leave-btn">我的假期申请</button>
+	<button id="open-leave-modal" class="btn btn-primary">新建请假</button>
+
+        <button class="btn btn-primary" id="my-annual-leave-btn">我的年假</button>
+      </div>
+    </div>
+    <div class="col-md-9 offset-md-3" style="position: fixed; top: 30%; left: 33%;">
+      <!-- 右侧显示区域 -->
+      <div id="content-area">
+        <!-- 初始显示内容，你可以在 JavaScript 中动态替换这里的内容 -->
+        <p>点击左边按钮以显示内容。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 模态框结构 -->
+<div class="modal fade" id="new-leave-modal" tabindex="-1" role="dialog" aria-labelledby="new-leave-modal-label" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <!-- 模态框标题和内容区域 -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="new-leave-modal-label">新建请假</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+	 <h1>请假登记表</h1>
+	 <%= form_tag leaves_path, method: :post, remote: true do %>
+            <div class="input-field">
+               <%= label_tag 'leave_start_date', '请假开始时间' %>
+               <%= date_field_tag 'leave[start_date]', class: 'datepicker'  %>
+	    </div>
+            <div class="input-field">
+               <%= label_tag 'leave_end_date', '请假结束时间' %>
+	       <%= date_field_tag 'leave[end_date]', class: 'datepicker'  %>
+	    </div>
+	    <div class="input-field">
+               <%= label_tag 'leave_reason', '请假事由' %>
+               <%= text_field_tag 'leave[reason]' %>
+	    </div>
+	    <br>
+            <div class="input-field">
+               <%= label_tag 'leave_type', '请假类型' %>
+               <%= select_tag 'leave[leave_type]', options_for_select(['年假', '事假', '病假', '丧假']), class: 'browser-default' %>
+	    </div>
+	    <br>
+	    <div class="modal-footer">
+               <%= submit_tag 'Create Leave', class: 'btn waves-effect waves-light', type: 'button', onclick: 'closeWindow()' %>
+            </div>  
+         <% end %>
+
+        <!-- 你可以使用 JavaScript 来加载表单内容，就像你在你的原始代码中所做的那样 -->
+        <!-- 例如，使用 fetch() 来加载表单内容 -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function closeWindow() {
+  window.close();
+}
+</script>

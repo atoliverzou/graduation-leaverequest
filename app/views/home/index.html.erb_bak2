@@ -1,0 +1,40 @@
+<h1>Welcome, <%= current_user.username %>!</h1>
+
+<script>
+document.getElementById('new-leave-btn').addEventListener('click', function() {
+  fetch('/leave/new')
+    .then(response => response.text())
+    .then(data => {
+      // 将返回的HTML内容显示在弹窗中
+      let modal = document.createElement('div');
+      modal.innerHTML = data;
+      document.body.appendChild(modal);
+    })
+    .catch(error => {
+      console.error('An error occurred:', error);
+    });
+});
+</script>
+<% if user_signed_in? %>
+  <%= link_to '新建请假', "/leaves/new/", class: 'btn btn-primary', id: 'new-leave-btn' %>
+<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3", style="position: fixed; top: 30%; left: 10%;">
+      <!-- 左侧按钮面板 -->
+      <div class="btn-group-vertical" role="group">
+        <button class="btn btn-primary" id="my-leave-btn">我的假期申请</button>
+        <button class="btn btn-primary" id="new-leave-btn">新建请假</button>
+        <button class="btn btn-primary" id="my-annual-leave-btn">我的年假</button>
+      </div>
+    </div>
+    <div class="col-md-9 offset-md-3" style="position: fixed; top: 30%; left: 33%;"> 
+      <!-- 右侧显示区域 -->
+      <div id="content-area">
+        <!-- 初始显示内容，你可以在 JavaScript 中动态替换这里的内容 -->
+        <p>点击左边按钮以显示内容。</p>
+      </div>
+    </div>
+  </div>
+</div>
+

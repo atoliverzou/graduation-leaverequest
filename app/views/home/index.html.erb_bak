@@ -1,0 +1,6 @@
+<h1>Welcome, <%= current_user.username %>!</h1>
+<p>This is your personalized dashboard.</p>
+<!-- Add more content here -->
+<% if user_signed_in? %>
+  <%= link_to '新建请假', leave_new_path, class: 'btn btn-primary' %>
+<% end %>
